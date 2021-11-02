@@ -202,11 +202,11 @@ function barsUpdater(content, height, color) {
     if (color === "blue") {
         gradientColor = "linear-gradient(45deg, #05abe0 0%, #8200f4 100%)";
     } else if (color === "red") {
-        gradientColor = "linear-gradient(45deg, #e69008 0%, #ff0000 100%)";
+        gradientColor = "linear-gradient(45deg, #ed2a2a 0%, #8c197d 100%)";
     } else if (color === "yellow") {
-        gradientColor = "linear-gradient(45deg, #e68c08 0%, #ffc700 100%)";
+        gradientColor = "linear-gradient(45deg, #fbff03 0%, #a7a41a 100%)";
     } else {
-        gradientColor = "linear-gradient(45deg, #6fe608 0%, #1B4D3E 100%)";
+        gradientColor = "linear-gradient(45deg, #1fe423 0%, #208b1b 100%)";
     }
 
     window.setTimeout(function () {
