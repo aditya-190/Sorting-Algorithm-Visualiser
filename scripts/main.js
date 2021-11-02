@@ -199,6 +199,13 @@ function startAlgorithmVisualisation(algorithm = SELECTION_SORT) {
 function barsUpdater(content, height, color) {
     let gradientColor;
 
+    /*
+            Blue    ->  Normal Bar Color
+            Red     ->  Selected Bar Color
+            Yellow  ->  Current Bar Color
+            Green   ->  Sorted Bar Color
+     */
+
     if (color === "blue") {
         gradientColor = "linear-gradient(45deg, #05abe0 0%, #8200f4 100%)";
     } else if (color === "red") {
