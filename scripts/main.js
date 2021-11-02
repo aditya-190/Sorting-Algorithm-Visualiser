@@ -31,6 +31,7 @@ changeHeading(activeItem.text() + " Sort");
 defaultActiveBarPosition();
 clickListeners();
 generateArray();
+updateSpeed(speedSlider.val());
 
 function changeHeading(heading) {
     $(".heading").text(heading);
@@ -96,7 +97,9 @@ function clickListeners() {
     });
 
     $(document).on('input', '#speed_slider', function () {
-        updateSpeed($(this).val());
+        if (!algorithmRunning) {
+            updateSpeed($(this).val());
+        }
     });
 
     $(document).on('input', '#size_slider', function () {
@@ -110,7 +113,7 @@ function generateArray() {
     content.empty();
 
     for (let i = 0; i < totalBars; i++) {
-        singleBarSize[i] = Math.floor(Math.random() * 0.5 * (sizeSlider.attr('max') - sizeSlider.attr('min'))) + 10;
+        singleBarSize[i] = Math.floor(Math.random() * (sizeSlider.attr('max') - sizeSlider.attr('min'))) + 10;
         divsArray[i] = $('<div></div>');
         content.append(divsArray[i]);
         divsArray[i].css({
@@ -131,32 +134,36 @@ function updateSize(changedSize) {
 }
 
 function updateSpeed(changedSpeed) {
-    speedOfAlgorithm = changedSpeed;
-    switch (parseInt(speedOfAlgorithm)) {
+    switch (parseInt(changedSpeed)) {
         case 1:
-            speedOfAlgorithm = 1;
+            speedOfAlgorithm = 5;
             break;
         case 2:
-            speedOfAlgorithm = 10;
+            speedOfAlgorithm = 20;
             break;
         case 3:
-            speedOfAlgorithm = 100;
+            speedOfAlgorithm = 80;
             break;
         case 4:
-            speedOfAlgorithm = 1000;
+            speedOfAlgorithm = 320;
             break;
         case 5:
-            speedOfAlgorithm = 10000;
+            speedOfAlgorithm = 640;
             break;
     }
+    totalDelayTime = 10000 / (Math.floor(totalBars / 10) * speedOfAlgorithm);
 }
 
 function enableButtons() {
-    algorithmRunning = false;
+    window.setTimeout(function () {
+        algorithmRunning = false;
+    }, currentDelayTime += totalDelayTime);
 }
 
 function startAlgorithmVisualisation(algorithm = SELECTION_SORT) {
     algorithmRunning = true;
+    currentDelayTime = 0;
+
     switch (algorithm) {
         case SELECTION_SORT + " Sort": {
             selectionSort();
@@ -190,12 +197,24 @@ function startAlgorithmVisualisation(algorithm = SELECTION_SORT) {
 }
 
 function barsUpdater(content, height, color) {
+    let gradientColor;
+
+    if (color === "blue") {
+        gradientColor = "linear-gradient(45deg, #05abe0 0%, #8200f4 100%)";
+    } else if (color === "red") {
+        gradientColor = "linear-gradient(45deg, #e69008 0%, #ff0000 100%)";
+    } else if (color === "yellow") {
+        gradientColor = "linear-gradient(45deg, #e68c08 0%, #ffc700 100%)";
+    } else {
+        gradientColor = "linear-gradient(45deg, #6fe608 0%, #1B4D3E 100%)";
+    }
+
     window.setTimeout(function () {
         content.css({
             "margin": "0% " + spaceBetweenBars + "%",
-            "width": (100 / totalBars - (2 * spaceBetweenBars)),
-            "height": height,
-            "background-color": color
+            "width": (100 / totalBars - (2 * spaceBetweenBars)) + "%",
+            "height": height + "%",
+            "background": gradientColor,
         });
     }, currentDelayTime += totalDelayTime);
 }
