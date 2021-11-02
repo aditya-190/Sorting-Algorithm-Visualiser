@@ -1,3 +1,8 @@
+const CHANGE_SPEED = "Change Speed";
+const CHANGE_SIZE = "Change Size";
+const GENERATE_NEW_ARRAY = "Generate New Array";
+const GO = "Go";
+
 const tabs = $('.tabs');
 const activeItem = tabs.find('.active');
 const activeWidth = activeItem.innerWidth();
@@ -22,7 +27,20 @@ function navigationBarClickListener() {
         e.preventDefault();
         const activeTab = $('.tabs a');
         const activeWidth = $(this).innerWidth();
-        const itemPos = $(this).position();
+        let itemPos;
+        if ($(this).text() === CHANGE_SPEED) {
+            itemPos = $(this).parent().position();
+            $("#change_speed").css("display", "block")
+            $("#change_size").css("display", "none")
+        } else if($(this).text() === CHANGE_SIZE) {
+            itemPos = $(this).parent().position();
+            $("#change_size").css("display", "block")
+            $("#change_speed").css("display", "none")
+        } else{
+            itemPos = $(this).position();
+            $("#change_speed").css("display", "none")
+            $("#change_size").css("display", "none")
+        }
 
         activeTab.removeClass("active");
         $(this).addClass('active');
@@ -32,19 +50,19 @@ function navigationBarClickListener() {
         });
 
         switch ($(this).text()) {
-            case "Change Speed": {
+            case CHANGE_SPEED: {
                 changeSpeed()
                 break;
             }
-            case "Change Size": {
+            case CHANGE_SIZE: {
                 changeSize()
                 break;
             }
-            case "Generate New Array": {
+            case GENERATE_NEW_ARRAY: {
                 generateArray()
                 break;
             }
-            case "Go": {
+            case GO: {
                 startAlgorithmVisualisation()
                 break;
             }

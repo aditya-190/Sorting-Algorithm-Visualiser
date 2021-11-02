@@ -74,3 +74,19 @@ h1 {
     height: 75%;
     box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
 }
+
+.change {
+    position: relative;
+    display: inline-block;
+}
+
+.ranger {
+    display: none;
+    position: absolute;
+    border-radius: 16px;
+    background-color: #ffffff;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+    min-width: 120px;
+    padding: 16px 16px;
+    z-index: 1;
+}
