@@ -185,7 +185,7 @@ function startAlgorithmVisualisation(algorithm = SELECTION_SORT) {
             break;
         }
         case QUICK_SORT + " Sort": {
-            quickSort();
+            quickSort(0, totalBars - 1);
             break;
         }
         case HEAP_SORT + " Sort": {
