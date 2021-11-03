@@ -122,7 +122,7 @@ function generateArray() {
                 "filter": "gradient(startColorstr='#05abe0', endColorstr='#8200f4', GradientType=1)",
                 "width": (100 / totalBars - (2 * spaceBetweenBars)) + "%",
                 "height": singleBarSize[i] + "%",
-                "border-radius": "0 0 32px 32px"
+                "border-radius": "32px 32px 32px 32px"
             }
         );
     }
