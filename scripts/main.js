@@ -173,23 +173,23 @@ function startAlgorithmVisualisation(algorithm = SELECTION_SORT) {
             break;
         }
         case INSERTION_SORT + " Sort": {
-            insertionSort()
+            insertionSort();
             break;
         }
         case BUBBLE_SORT + " Sort": {
-            bubbleSort()
+            bubbleSort();
             break;
         }
         case MERGE_SORT + " Sort": {
-            mergeSort()
+            mergeSort(0, totalBars - 1);
             break;
         }
         case QUICK_SORT + " Sort": {
-            quickSort()
+            quickSort();
             break;
         }
         case HEAP_SORT + " Sort": {
-            heapSort()
+            heapSort();
             break;
         }
         default: {

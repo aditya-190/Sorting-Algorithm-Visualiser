@@ -1,35 +1,25 @@
-function mergeSort() {
-    console.log(singleBarSize);
-    divide(0, totalBars - 1);
-    console.log(singleBarSize);
-    enableButtons();
+function merge(start, middle, end) {
+    let firstSize = middle - start + 1, secondSize = end - middle, leftArray = [], rightArray = [];
+
+    for (let i = 0; i < firstSize; i++) leftArray[i] = singleBarSize[start + i];
+    for (let i = 0; i < secondSize; i++) rightArray[i] = singleBarSize[middle + 1 + i];
+
+    let i = 0, j = 0, k = start;
+
+    while (i < firstSize && j < secondSize) {
+        if (leftArray[i] <= rightArray[j]) singleBarSize[k++] = leftArray[i++];
+        else singleBarSize[k++] = rightArray[j++];
+    }
+
+    while (i < firstSize) singleBarSize[k++] = leftArray[i++];
+    while (j < secondSize) singleBarSize[k++] = rightArray[j++];
 }
 
-function divide(left, right) {
-    if (left < right) {
-        let middle = left + (right - left) / 2;
-        divide(left, middle);
-        divide(middle + 1, right);
-        merge(left, middle, right);
-    }
-}
+function mergeSort(start, end) {
+    if (start >= end) return;
 
-function merge(left, middle, right) {
-    let i = left, j = middle + 1, k = 0, temporary = [];
-
-    for (let l = left; l <= right; l++) {
-        if (i > middle) {
-            temporary[k++] = singleBarSize[j++];
-        } else if (j > right) {
-            temporary[k++] = singleBarSize[i++];
-        } else if (singleBarSize[i] < singleBarSize[j]) {
-            temporary[k++] = singleBarSize[i++];
-        } else {
-            temporary[k++] = singleBarSize[j++];
-        }
-    }
-
-    for (let m = 0; m < k; m++) {
-        singleBarSize[left++] = temporary[m];
-    }
+    let middle = (start + end) / 2;
+    mergeSort(start, middle);
+    mergeSort(middle + 1, end);
+    merge(start, middle, end);
 }
