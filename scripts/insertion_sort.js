@@ -7,4 +7,5 @@ function insertionSort() {
         }
         singleBarSize[j + 1] = currentSelected;
     }
+    enableButtons();
 }

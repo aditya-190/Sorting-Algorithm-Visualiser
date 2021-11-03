@@ -8,4 +8,5 @@ function bubbleSort() {
             }
         }
     }
+    enableButtons();
 }

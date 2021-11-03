@@ -164,6 +164,9 @@ function startAlgorithmVisualisation(algorithm = SELECTION_SORT) {
     algorithmRunning = true;
     currentDelayTime = 0;
 
+    console.log("Inital Array");
+    console.log(singleBarSize);
+
     switch (algorithm) {
         case SELECTION_SORT + " Sort": {
             selectionSort();
@@ -194,6 +197,9 @@ function startAlgorithmVisualisation(algorithm = SELECTION_SORT) {
             break;
         }
     }
+
+    console.log("Sorted Array");
+    console.log(singleBarSize);
 }
 
 function barsUpdater(content, height, color) {
