@@ -18,7 +18,7 @@ function merge(start, middle, end) {
 function mergeSort(start, end) {
     if (start >= end) return;
 
-    let middle = (start + end) / 2;
+    let middle = Math.floor((start + end) / 2);
     mergeSort(start, middle);
     mergeSort(middle + 1, end);
     merge(start, middle, end);
