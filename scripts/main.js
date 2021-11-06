@@ -164,7 +164,7 @@ function startAlgorithmVisualisation(algorithm = SELECTION_SORT) {
     algorithmRunning = true;
     currentDelayTime = 0;
 
-    console.log("Inital Array");
+    console.log("---------- Initial Array ----------");
     console.log(singleBarSize);
 
     switch (algorithm) {
@@ -198,7 +198,7 @@ function startAlgorithmVisualisation(algorithm = SELECTION_SORT) {
         }
     }
 
-    console.log("Sorted Array");
+    console.log("---------- Sorted Array ----------");
     console.log(singleBarSize);
 }
 
