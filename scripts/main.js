@@ -97,15 +97,11 @@ function clickListeners() {
     });
 
     $(document).on('input', '#speed_slider', function () {
-        if (!algorithmRunning) {
-            updateSpeed($(this).val());
-        }
+        updateSpeed($(this).val());
     });
 
     $(document).on('input', '#size_slider', function () {
-        if (!algorithmRunning) {
-            updateSize($(this).val());
-        }
+        updateSize($(this).val());
     });
 }
 
