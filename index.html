@@ -2,15 +2,15 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <title>Visual Algo's</title>
-    <link rel="stylesheet" href="css/main.css">
+    <link href="css/main.css" rel="stylesheet">
     <script src="scripts/jquery.js"></script>
 </head>
 <body>
 <nav class="tabs">
     <div class="selector"></div>
-    <a href="#" class="active">Selection</a>
+    <a class="active" href="#">Selection</a>
     <a href="#">Insertion</a>
     <a href="#">Bubble</a>
     <a href="#">Merge</a>
@@ -22,7 +22,7 @@
         <a href="#">Change Size</a>
         <div class="ranger" id="change_size">
             <label>
-                <input type="range" id="size_slider" min="20" max="100" step="1" value="30">
+                <input id="size_slider" max="100" min="20" step="1" type="range" value="30">
             </label>
         </div>
     </div>
@@ -30,7 +30,7 @@
         <a href="#">Change Speed</a>
         <div class="ranger" id="change_speed">
             <label>
-                <input type="range" id="speed_slider" min="1" max="5" step="1" value="4">
+                <input id="speed_slider" max="5" min="1" step="1" type="range" value="4">
             </label>
         </div>
     </div>
