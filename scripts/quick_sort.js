@@ -47,8 +47,8 @@ function divide(lowerBound, upperBound) {
     barsUpdater(divsArray[lowerBound], singleBarSize[lowerBound], "red");
     barsUpdater(divsArray[end], singleBarSize[end], "red");
 
-    for (let temporary = lowerBound; temporary <= upperBound; temporary++)
-        barsUpdater(divsArray[temporary], singleBarSize[temporary], "green");
+    barsUpdater(divsArray[lowerBound], singleBarSize[lowerBound], "green");
+    barsUpdater(divsArray[end], singleBarSize[end], "green");
 
     return end;
 }
