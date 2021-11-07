@@ -155,6 +155,8 @@ function updateSpeed(changedSpeed) {
 }
 
 function startAlgorithmVisualisation(algorithm = SELECTION_SORT) {
+    currentDelayTime = 0;
+
     switch (algorithm) {
         case SELECTION_SORT + " Sort": {
             selectionSort();
