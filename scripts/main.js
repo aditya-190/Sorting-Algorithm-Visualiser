@@ -25,6 +25,7 @@ let spaceBetweenBars = 0.1;
 let speedOfAlgorithm = speedSlider.val();
 let totalDelayTime = 10000 / (Math.floor(totalBars / 10) * speedOfAlgorithm);
 let currentDelayTime = 0;
+let maxSizeInWhichTextAppears = 60;
 
 changeHeading(activeItem.text() + " Sort");
 defaultActiveBarPosition();
@@ -110,7 +111,12 @@ function generateArray() {
     for (let i = 0; i < totalBars; i++) {
         singleBarSize[i] = Math.floor(Math.random() * (sizeSlider.attr('max') - sizeSlider.attr('min'))) + 10;
         divsArray[i] = $('<div></div>');
-        content.append(divsArray[i].append(singleBarSize[i]));
+
+        if (sizeSlider.val() > maxSizeInWhichTextAppears)
+            content.append(divsArray[i]);
+        else
+            content.append(divsArray[i].append(singleBarSize[i]));
+
         divsArray[i].css({
                 "margin": "0% " + spaceBetweenBars + "%",
                 "background": "linear-gradient(45deg, #05abe0 0%, #8200f4 100%)",
@@ -208,7 +214,9 @@ function barsUpdater(content, height, color) {
     }
 
     window.setTimeout(function () {
-        content.text(height);
+        if (sizeSlider.val() < maxSizeInWhichTextAppears)
+            content.text(height);
+
         content.css({
             "margin": "0% " + spaceBetweenBars + "%",
             "width": (100 / totalBars - (2 * spaceBetweenBars)) + "%",
