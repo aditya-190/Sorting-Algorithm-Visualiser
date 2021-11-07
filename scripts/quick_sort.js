@@ -7,48 +7,43 @@ function quickSort(start, end) {
 }
 
 function divide(lowerBound, upperBound) {
-    let pivot = singleBarSize[lowerBound], start = lowerBound, end = upperBound;
+    let pivot = singleBarSize[lowerBound], j = lowerBound + 1;
 
-    while (start < end) {
-        while (singleBarSize[start] <= pivot) {
-            barsUpdater(divsArray[start], singleBarSize[start], "yellow");
-            barsUpdater(divsArray[start], singleBarSize[start], "blue");
-            start++;
-        }
+    barsUpdater(divsArray[lowerBound], singleBarSize[lowerBound], "yellow");
 
-        while (singleBarSize[end] > pivot) {
-            barsUpdater(divsArray[end], singleBarSize[end], "yellow");
-            barsUpdater(divsArray[end], singleBarSize[end], "blue");
-            end--;
-        }
+    for (let i = lowerBound + 1; i <= upperBound; i++) {
+        if (singleBarSize[i] < pivot) {
+            barsUpdater(divsArray[i], singleBarSize[i], "yellow");
 
-        if (start < end) {
-            barsUpdater(divsArray[start], singleBarSize[start], "red");
-            barsUpdater(divsArray[end], singleBarSize[end], "red");
+            barsUpdater(divsArray[j], singleBarSize[j], "red");
+            barsUpdater(divsArray[i], singleBarSize[i], "red");
 
-            let temporary = singleBarSize[start];
-            singleBarSize[start] = singleBarSize[end]
-            singleBarSize[end] = temporary;
+            let temporary = singleBarSize[j];
+            singleBarSize[j] = singleBarSize[i];
+            singleBarSize[i] = temporary;
 
-            barsUpdater(divsArray[start], singleBarSize[start], "red");
-            barsUpdater(divsArray[end], singleBarSize[end], "red");
-            barsUpdater(divsArray[start], singleBarSize[start], "blue");
-            barsUpdater(divsArray[end], singleBarSize[end], "blue");
+            barsUpdater(divsArray[j], singleBarSize[j], "red");
+            barsUpdater(divsArray[i], singleBarSize[i], "red");
+
+            barsUpdater(divsArray[j], singleBarSize[j], "blue");
+            barsUpdater(divsArray[i], singleBarSize[i], "blue");
+
+            j++;
         }
     }
 
     barsUpdater(divsArray[lowerBound], singleBarSize[lowerBound], "red");
-    barsUpdater(divsArray[end], singleBarSize[end], "red");
+    barsUpdater(divsArray[j - 1], singleBarSize[j - 1], "red");
 
     let temporary = singleBarSize[lowerBound];
-    singleBarSize[lowerBound] = singleBarSize[end]
-    singleBarSize[end] = temporary;
+    singleBarSize[lowerBound] = singleBarSize[j - 1];
+    singleBarSize[j - 1] = temporary;
 
     barsUpdater(divsArray[lowerBound], singleBarSize[lowerBound], "red");
-    barsUpdater(divsArray[end], singleBarSize[end], "red");
+    barsUpdater(divsArray[j - 1], singleBarSize[j - 1], "red");
 
-    barsUpdater(divsArray[lowerBound], singleBarSize[lowerBound], "green");
-    barsUpdater(divsArray[end], singleBarSize[end], "green");
+    for (let temporary = lowerBound; temporary <= j; temporary++)
+        barsUpdater(divsArray[temporary], singleBarSize[temporary], "green");
 
-    return end;
+    return j - 1;
 }
