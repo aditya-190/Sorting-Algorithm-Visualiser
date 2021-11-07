@@ -107,6 +107,8 @@ function clickListeners() {
 
 function generateArray() {
     content.empty();
+    singleBarSize = []
+    divsArray = []
 
     for (let i = 0; i < totalBars; i++) {
         singleBarSize[i] = Math.floor(Math.random() * (sizeSlider.attr('max') - sizeSlider.attr('min'))) + 10;

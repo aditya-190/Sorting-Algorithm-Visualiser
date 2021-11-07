@@ -2,6 +2,8 @@ function bubbleSort() {
     for (let i = 0; i < totalBars - 1; i++) {
         for (let j = 0; j < totalBars - i - 1; j++) {
             barsUpdater(divsArray[j], singleBarSize[j], "yellow");
+            barsUpdater(divsArray[j + 1], singleBarSize[j + 1], "yellow");
+
             if (singleBarSize[j] > singleBarSize[j + 1]) {
                 barsUpdater(divsArray[j], singleBarSize[j], "red");
                 barsUpdater(divsArray[j + 1], singleBarSize[j + 1], "red");
