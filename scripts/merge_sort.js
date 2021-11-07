@@ -42,6 +42,4 @@ function mergeSort(start, end) {
     mergeSort(start, middle);
     mergeSort(middle + 1, end);
     merge(start, middle, end);
-
-    enableButtons();
 }

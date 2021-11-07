@@ -28,6 +28,4 @@ function insertionSort() {
             barsUpdater(divsArray[temporary], singleBarSize[temporary], "green")
     }
     barsUpdater(divsArray[totalBars - 1], singleBarSize[totalBars - 1], "green")
-
-    enableButtons();
 }

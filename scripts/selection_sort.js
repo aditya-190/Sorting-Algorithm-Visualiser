@@ -28,6 +28,4 @@ function selectionSort() {
 
         barsUpdater(divsArray[i], singleBarSize[i], "green");
     }
-
-    enableButtons();
 }

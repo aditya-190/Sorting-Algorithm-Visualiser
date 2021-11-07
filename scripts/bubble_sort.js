@@ -21,5 +21,4 @@ function bubbleSort() {
         barsUpdater(divsArray[totalBars - i - 1], singleBarSize[totalBars - i - 1], "green");
     }
     barsUpdater(divsArray[0], singleBarSize[0], "green");
-    enableButtons();
 }
