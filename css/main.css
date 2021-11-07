@@ -70,6 +70,7 @@ h1 {
     display: flex;
     margin: 0 auto;
     width: 90%;
+    padding: 1%;
     background: #ffffff;
     height: 75%;
     box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
