@@ -1,7 +1,7 @@
 function quickSort(start, end) {
     quickSortMain(start, end);
 
-    for (let i = start; i < end; i++)
+    for (let i = start; i <= end; i++)
         barsUpdater(divsArray[i], singleBarSize[i], "green");
 }
 
