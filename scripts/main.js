@@ -25,7 +25,6 @@ let spaceBetweenBars = 0.1;
 let speedOfAlgorithm = speedSlider.val();
 let totalDelayTime = 10000 / (Math.floor(totalBars / 10) * speedOfAlgorithm);
 let currentDelayTime = 0;
-let algorithmRunning = false;
 
 changeHeading(activeItem.text() + " Sort");
 defaultActiveBarPosition();
@@ -46,52 +45,50 @@ function defaultActiveBarPosition() {
 
 function clickListeners() {
     $(".tabs").on("click", "a", function (e) {
-        if (!algorithmRunning) {
-            e.preventDefault();
-            const activeTab = $('.tabs a');
-            const activeWidth = $(this).innerWidth();
-            let itemPos;
-            if ($(this).text() === CHANGE_SPEED) {
-                itemPos = $(this).parent().position();
-                $("#change_speed").css("display", "block");
-                $("#change_size").css("display", "none");
-            } else if ($(this).text() === CHANGE_SIZE) {
-                itemPos = $(this).parent().position();
-                $("#change_size").css("display", "block");
-                $("#change_speed").css("display", "none");
-            } else {
-                itemPos = $(this).position();
-                $("#change_speed").css("display", "none");
-                $("#change_size").css("display", "none");
+        e.preventDefault();
+        const activeTab = $('.tabs a');
+        const activeWidth = $(this).innerWidth();
+        let itemPos;
+        if ($(this).text() === CHANGE_SPEED) {
+            itemPos = $(this).parent().position();
+            $("#change_speed").css("display", "block");
+            $("#change_size").css("display", "none");
+        } else if ($(this).text() === CHANGE_SIZE) {
+            itemPos = $(this).parent().position();
+            $("#change_size").css("display", "block");
+            $("#change_speed").css("display", "none");
+        } else {
+            itemPos = $(this).position();
+            $("#change_speed").css("display", "none");
+            $("#change_size").css("display", "none");
+        }
+
+        activeTab.removeClass("active");
+        $(this).addClass('active');
+        $(".selector").css({
+            "left": itemPos.left + "px",
+            "width": activeWidth + "px"
+        });
+
+        switch ($(this).text()) {
+            case CHANGE_SPEED: {
+                break;
+            }
+            case CHANGE_SIZE: {
+                break;
+            }
+            case GENERATE_NEW_ARRAY: {
+                generateArray();
+                break;
+            }
+            case GO: {
+                startAlgorithmVisualisation($(".heading").text())
+                break;
             }
 
-            activeTab.removeClass("active");
-            $(this).addClass('active');
-            $(".selector").css({
-                "left": itemPos.left + "px",
-                "width": activeWidth + "px"
-            });
-
-            switch ($(this).text()) {
-                case CHANGE_SPEED: {
-                    break;
-                }
-                case CHANGE_SIZE: {
-                    break;
-                }
-                case GENERATE_NEW_ARRAY: {
-                    generateArray();
-                    break;
-                }
-                case GO: {
-                    startAlgorithmVisualisation($(".heading").text())
-                    break;
-                }
-
-                default: {
-                    changeHeading($(this).text() + " Sort");
-                    break;
-                }
+            default: {
+                changeHeading($(this).text() + " Sort");
+                break;
             }
         }
     });
@@ -113,14 +110,19 @@ function generateArray() {
     for (let i = 0; i < totalBars; i++) {
         singleBarSize[i] = Math.floor(Math.random() * (sizeSlider.attr('max') - sizeSlider.attr('min'))) + 10;
         divsArray[i] = $('<div></div>');
-        content.append(divsArray[i]);
+        content.append(divsArray[i].append(singleBarSize[i]));
         divsArray[i].css({
                 "margin": "0% " + spaceBetweenBars + "%",
                 "background": "linear-gradient(45deg, #05abe0 0%, #8200f4 100%)",
                 "filter": "gradient(startColorstr='#05abe0', endColorstr='#8200f4', GradientType=1)",
                 "width": (100 / totalBars - (2 * spaceBetweenBars)) + "%",
                 "height": singleBarSize[i] + "%",
-                "border-radius": "32px 32px 32px 32px"
+                "border-radius": "32px",
+                "text-align": "center",
+                "vertical-align": "middle",
+                "line-height": "32px",
+                "color": "white",
+                "font-size": (100 / totalBars - (2 * spaceBetweenBars)) + "%"
             }
         );
     }
@@ -137,34 +139,22 @@ function updateSpeed(changedSpeed) {
             speedOfAlgorithm = 5;
             break;
         case 2:
-            speedOfAlgorithm = 20;
+            speedOfAlgorithm = 10;
             break;
         case 3:
-            speedOfAlgorithm = 80;
+            speedOfAlgorithm = 100;
             break;
         case 4:
-            speedOfAlgorithm = 320;
+            speedOfAlgorithm = 500;
             break;
         case 5:
-            speedOfAlgorithm = 640;
+            speedOfAlgorithm = 1000;
             break;
     }
     totalDelayTime = 10000 / (Math.floor(totalBars / 10) * speedOfAlgorithm);
 }
 
-function enableButtons() {
-    window.setTimeout(function () {
-        algorithmRunning = false;
-    }, currentDelayTime += totalDelayTime);
-}
-
 function startAlgorithmVisualisation(algorithm = SELECTION_SORT) {
-    algorithmRunning = true;
-    currentDelayTime = 0;
-
-    console.log("---------- Initial Array ----------");
-    console.log(singleBarSize);
-
     switch (algorithm) {
         case SELECTION_SORT + " Sort": {
             selectionSort();
@@ -195,9 +185,6 @@ function startAlgorithmVisualisation(algorithm = SELECTION_SORT) {
             break;
         }
     }
-
-    console.log("---------- Sorted Array ----------");
-    console.log(singleBarSize);
 }
 
 /*
@@ -219,6 +206,7 @@ function barsUpdater(content, height, color) {
     }
 
     window.setTimeout(function () {
+        content.text(height);
         content.css({
             "margin": "0% " + spaceBetweenBars + "%",
             "width": (100 / totalBars - (2 * spaceBetweenBars)) + "%",
